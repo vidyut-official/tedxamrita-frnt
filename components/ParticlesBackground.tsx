@@ -49,7 +49,7 @@ export default function ParticlesBackground() {
             color: "#ff2b06",
             distance: 150,
             opacity: 0.4,
-            width: 1,
+            width: 1.3,
           },
           move: {
             enable: true,
@@ -63,7 +63,7 @@ export default function ParticlesBackground() {
             value: 0.5,
           },
           size: {
-            value: { min: 1, max: 3 },
+            value: { min: 2, max: 4 },
           },
         },
         interactivity: {
@@ -78,9 +78,9 @@ export default function ParticlesBackground() {
           },
           modes: {
             grab: {
-              distance: 200,
+              distance: 250,
               links: {
-                opacity: 0.8,
+                opacity: 1,
               },
             },
           },

@@ -56,17 +56,17 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-10">
-            <div className="flex gap-8">
+            {/* <div className="flex gap-8">
               {navLinks.map((link) => (
                 <NavLink key={link.name} link={link} active={pathname === link.href} />
               ))}
-            </div>
-            <Link
+            </div> */}
+            {/* <Link
               href="/register"
               className="bg-red-600 hover:bg-white hover:text-black text-white px-7 py-3 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 active:scale-95"
             >
               Get Tickets
-            </Link>
+            </Link> */}
           </div>
 
           {/* Mobile Toggle Button */}

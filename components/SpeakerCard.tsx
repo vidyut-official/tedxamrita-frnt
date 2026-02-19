@@ -45,7 +45,7 @@ export default function SpeakerCard({ name, role, image }: SpeakerProps) {
         {/* Bottom Info Overlay (Reveals on Hover) */}
         <div className="absolute bottom-0 left-0 p-6 z-30 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
           <p className="text-white/0 group-hover:text-white/70 text-[10px] uppercase tracking-[0.3em] font-bold mb-2 transition-colors duration-500">
-            View Profile
+            Revealing Soon
           </p>
         </div>
       </div>
