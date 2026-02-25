@@ -7,10 +7,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { name: "About", href: "/about" },
-  { name: "Speakers", href: "/speakers" },
-  { name: "Schedule", href: "/event" },
-  { name: "Team", href: "/team" },
+  { name: "About", href: "#about" },
+  { name: "Speakers", href: "#speakers" },
+  { name: "Schedule", href: "#schedule" },
+  { name: "Team", href: "#team" },
 ];
 
 export default function Navbar({ scrolled }: { scrolled: boolean }) {
@@ -29,14 +29,13 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-          scrolled || isOpen
-            ? "bg-black/90 backdrop-blur-xl py-4 border-b border-white/5"
-            : "bg-transparent py-8"
-        }`}
+        className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${scrolled || isOpen
+          ? "bg-black/90 backdrop-blur-xl py-4"
+          : "bg-transparent py-4"
+          }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          
+
           {/* Logo - Always visible but scales */}
           <Link href="/" className="relative z-[110] flex items-center">
             <motion.div
@@ -65,25 +64,25 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
               href="/register"
               className="bg-red-600 hover:bg-white hover:text-black text-white px-7 py-3 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 active:scale-95"
             >
-              Get Tickets
+              Register Now
             </Link>
           </div>
 
           {/* Mobile Toggle Button */}
-          <button 
+          <button
             onClick={() => setIsOpen(!isOpen)}
             className="relative z-[110] md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 focus:outline-none"
             aria-label="Toggle Menu"
           >
-            <motion.span 
+            <motion.span
               animate={isOpen ? { rotate: 45, y: 7.5 } : { rotate: 0, y: 0 }}
               className="w-6 h-0.5 bg-white block"
             />
-            <motion.span 
+            <motion.span
               animate={isOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
               className="w-6 h-0.5 bg-white block"
             />
-            <motion.span 
+            <motion.span
               animate={isOpen ? { rotate: -45, y: -7.5 } : { rotate: 0, y: 0 }}
               className="w-6 h-0.5 bg-white block"
             />
@@ -114,15 +113,15 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
                 >
                   <Link
                     href={link.href}
-                    className={`text-4xl font-black uppercase tracking-tighter ${
-                      pathname === link.href ? "text-red-600" : "text-white"
-                    }`}
+                    onClick={() => setIsOpen(false)}
+                    className={`text-4xl font-black uppercase tracking-tighter ${pathname === link.href ? "text-red-600" : "text-white"
+                      }`}
                   >
                     {link.name}
                   </Link>
                 </motion.div>
               ))}
-              
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -149,9 +148,8 @@ function NavLink({ link, active }: { link: any; active: boolean }) {
   return (
     <Link
       href={link.href}
-      className={`relative group text-[10px] font-bold uppercase tracking-[0.25em] transition-colors ${
-        active ? "text-red-600" : "text-white/70 hover:text-white"
-      }`}
+      className={`relative group text-[10px] font-bold uppercase tracking-[0.25em] transition-colors ${active ? "text-red-600" : "text-white/70 hover:text-white"
+        }`}
     >
       {link.name}
       <span className={`absolute -bottom-1 left-0 w-0 h-[1px] bg-red-600 transition-all duration-300 group-hover:w-full ${active ? 'w-full' : ''}`} />

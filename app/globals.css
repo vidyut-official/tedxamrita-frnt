@@ -3,6 +3,38 @@
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: black;
+}
+@keyframes spotlightFade {
+  0% {
+    opacity: 0;
+    transform: translateY(120px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) scale(1);
+  }
+}
+html {
+  scroll-behavior: smooth;
+}
+.animate-spotlight-left {
+  animation: spotlightFade 1.5s ease forwards;
+}
+
+.animate-spotlight-right {
+  animation: spotlightFade 1.5s ease forwards;
+  animation-delay: 0.8s;
+}
+
+
+.animate-spotlight {
+  animation: spotlight 1.8s ease forwards;
+}
 
 html {
   scroll-behavior: smooth;

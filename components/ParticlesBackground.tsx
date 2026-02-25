@@ -33,10 +33,10 @@ export default function ParticlesBackground() {
         background: {
           color: "transparent", // Set to transparent so your CSS background shows through
         },
-        fpsLimit: 120,
+        fpsLimit: 240,
         particles: {
           number: {
-            value: 80,
+            value: 250,
             density: {
               enable: true,
             },
@@ -47,20 +47,20 @@ export default function ParticlesBackground() {
           links: {
             enable: true,
             color: "#ff2b06",
-            distance: 150,
-            opacity: 0.4,
-            width: 1,
+            distance: 100,
+            opacity: 0.7,
+            width: 1.2,
           },
           move: {
             enable: true,
-            speed: 1.2,
+            speed: 1.5,
             direction: "none",
             outModes: {
-              default: "out", // "out" feels smoother than "bounce" for hero sections
+              default: "bounce", // "out" feels smoother than "bounce" for hero sections
             },
           },
           opacity: {
-            value: 0.5,
+            value: 0.7,
           },
           size: {
             value: { min: 1, max: 3 },

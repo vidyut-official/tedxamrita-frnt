@@ -2,8 +2,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 
 export const metadata = {
-  title: "TEDx YourCollege",
-  description: "Ideas worth spreading",
+  title: "TEDx Amritapuri",
+  description: "Beyond the visible",
 };
 
 export default function RootLayout({
@@ -14,7 +14,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-black text-white antialiased">
-        <Navbar scrolled={false} />
         <div className="pt-20">{children}</div>
       </body>
     </html>
