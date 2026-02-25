@@ -68,7 +68,7 @@ export default function EventCountdown() {
   );
 
   return (
-    <div className="flex gap-4 md:gap-10 justify-center">
+    <div className="flex gap-5 md:gap-20 justify-center">
       {renderBox(timeLeft.days, "Days")}
       {renderBox(timeLeft.hours, "Hours")}
       {renderBox(timeLeft.minutes, "Minutes")}
