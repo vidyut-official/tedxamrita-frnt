@@ -5,9 +5,7 @@ export default function RegisterPage() {
   return (
     <main className="relative bg-black text-white min-h-screen ">
 
-    <Navbar scrolled={true} />
-
-      {/* Register Card Component */}
+    <Navbar scrolled={true}  />
       <RegisterCard />
 
     </main>

@@ -6,15 +6,11 @@ export const metadata = {
   description: "Beyond the visible",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className="bg-black text-white antialiased">
-        <div className="pt-20">{children}</div>
+        <div className="pt-16 md:pt-20">{children}</div>
       </body>
     </html>
   );

@@ -1,137 +1,237 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
-import { CheckCircle2, School, Globe2, ArrowRight } from "lucide-react";
+import { CheckCircle2, School, Globe2, Loader2, ArrowRight, User, Mail, Lock, Phone, AlertCircle } from "lucide-react";
+import { registerUser } from "@/lib/users";
 
 export default function RegisterCard() {
-  const [selected, setSelected] = useState<"college" | "external" | null>(null);
+  const [selected, setSelected] = useState<"college" | "external">("college");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim() || !email.trim() || !password.trim() || (selected === "external" && !phone.trim())) {
+      setMessage("Please fill in all required fields.");
+      setIsSuccess(false);
+      return;
+    }
+    setLoading(true);
+    setMessage("");
+
+    try {
+      await registerUser({
+        full_name: name.trim(),
+        email: email.trim().toLowerCase(),
+        password,
+        // phone: phone.trim(),
+        user_type: selected === "college" ? "amrita" : "others",
+        user_role: "participant",
+      });
+      setIsSuccess(true);
+      setMessage("Welcome to TEDxAmritapuri community!");
+    } catch (err: any) {
+      setIsSuccess(false);
+      setMessage(err?.message || "Registration failed. Try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (!mounted) return null;
 
   return (
-    <section className="relative py-20 sm:py-24 md:py-32 px-4 sm:px-6 bg-[#050505] text-white overflow-hidden">
-      
-      {/* Background Glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-red-600/10 blur-[140px] rounded-full" />
-      </div>
+    <main className="min-h-screen bg-black text-white selection:bg-red-500/30">
+      {/* Mobile Header */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 min-h-screen">
+        {/* LEFT COLUMN: Branding */}
+        <section className="hidden lg:flex relative flex-col justify-center p-16 overflow-hidden min-h-screen">
+          <div className="absolute top-1/4 -left-12 w-72 h-72 bg-red-600/20 blur-[100px] rounded-full animate-pulse" />
+          <div className="absolute bottom-1/4 -right-12 w-64 h-64 bg-orange-600/10 blur-[80px] rounded-full" />
 
-      <div className="relative max-w-xl sm:max-w-2xl md:max-w-4xl mx-auto">
-        
-        <LayoutGroup>
-          <motion.div
-            layout
-            className="bg-neutral-900/40 backdrop-blur-2xl border border-white/5 rounded-3xl shadow-2xl"
-          >
-            <div className="px-6 py-10 sm:px-10 sm:py-14 md:px-14 md:py-16">
+          <div className="relative z-10 space-y-8 max-w-xl">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="hidden lg:flex items-center gap-4"
+            >            </motion.div>
 
-              {/* Header */}
-              <div className="text-center mb-10 sm:mb-14">
-                <span className="text-red-500 text-xs sm:text-sm tracking-[0.3em] uppercase font-mono">
-                  Registration
-                </span>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <h1 className="text-6xl lg:text-8xl font-black uppercase leading-[0.9] tracking-tighter mb-6">
+                BEYOND <br />
+                THE VISIBLE
+              </h1>
+              <p className="text-neutral-400 text-lg lg:text-xl max-w-md font-light leading-relaxed">
+                Join a global community of thinkers and doers at Amrita Vishwa Vidyapeetham.
+              </p>
+            </motion.div>
+          </div>
+        </section>
 
-                <h2 className="text-2xl sm:text-3xl md:text-5xl font-black mt-3 tracking-tight leading-tight">
-                  Choose Your <span className="text-red-600">Path</span>
-                </h2>
+        {/* RIGHT COLUMN: Form */}
+        <section className="relative flex flex-col justify-center items-center p-6 lg:p-16 order-2 bg-neutral-900/30 border-l border-white/5">
+          <div className="w-full max-w-md space-y-8">
+            <header className="text-center lg:text-left">
+              <h2 className="text-3xl lg:text-4xl font-black mb-2">Create Account</h2>
+              <p className="text-neutral-500">Enter your details to get started</p>
+            </header>
 
-                <p className="text-white/40 mt-4 text-sm sm:text-base max-w-md mx-auto">
-                  Select your category to continue registration for TEDxAmritapuri 2026.
-                </p>
-              </div>
-
-              {/* Options */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                <OptionCard
-                  title="Amritapuri Students"
-                  description="Exclusive for @am.amrita.edu handles."
-                  icon={<School className="w-5 h-5 sm:w-6 sm:h-6" />}
-                  isActive={selected === "college"}
-                  onClick={() => setSelected("college")}
-                />
-
-                <OptionCard
-                  title="External Participants"
-                  description="For innovators across the globe."
-                  icon={<Globe2 className="w-5 h-5 sm:w-6 sm:h-6" />}
-                  isActive={selected === "external"}
-                  onClick={() => setSelected("external")}
-                />
-              </div>
-
-              {/* Action */}
-              <AnimatePresence mode="wait">
-                {selected && (
-                  <motion.div
-                    key={selected}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="mt-10 sm:mt-14 border-t border-white/10 pt-8 text-center"
+            {/* Type Selector */}
+            <div className="flex p-1 bg-black/40 border border-white/10 rounded-2xl relative">
+              <LayoutGroup>
+                {(['college', 'external'] as const).map((type) => (
+                  <button
+                    key={type}
+                    onClick={() => setSelected(type)}
+                    className={`relative flex-1 flex items-center justify-center gap-2 py-3 text-sm font-bold z-10 transition-colors duration-300 ${selected === type ? "text-white" : "text-neutral-500"
+                      }`}
                   >
-                    <p className="text-white/40 text-sm sm:text-base mb-8 max-w-md mx-auto">
-                      {selected === "college"
-                        ? "Please use your official university email ID for verification."
-                        : "Ensure your details are accurate. Confirmation will be sent via email."}
-                    </p>
+                    {type === 'college' ? <School size={16} /> : <Globe2 size={16} />}
+                    <span className="capitalize">{type === 'college' ? 'Amritapuri' : 'External'}</span>
+                    {selected === type && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className="absolute inset-0 bg-red-600 rounded-xl -z-10 shadow-lg shadow-red-600/20"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                  </button>
+                ))}
+              </LayoutGroup>
+            </div>
 
-                    <motion.a
-                      whileHover={{ scale: 1.04 }}
-                      whileTap={{ scale: 0.96 }}
-                      href={
-                        selected === "college"
-                          ? "#college-link"
-                          : "#external-link"
-                      }
-                      className="inline-flex items-center justify-center gap-3 bg-red-600 hover:bg-red-500 px-8 sm:px-12 py-4 sm:py-5 rounded-full text-sm sm:text-base font-bold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(220,38,38,0.3)] w-full sm:w-auto"
-                    >
-                      Proceed to Register
-                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
-                    </motion.a>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <InputField
+                icon={<User size={20} />}
+                placeholder="Full Name"
+                value={name}
+                onChange={setName}
+                disabled={loading}
+              />
+
+              <AnimatePresence mode="popLayout">
+                {selected === "external" && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                  >
+                    <InputField
+                      icon={<Phone size={20} />}
+                      type="tel"
+                      placeholder="Phone Number"
+                      value={phone}
+                      onChange={setPhone}
+                      disabled={loading}
+                    />
                   </motion.div>
                 )}
               </AnimatePresence>
 
-            </div>
-          </motion.div>
-        </LayoutGroup>
+              <InputField
+                icon={<Mail size={20} />}
+                type="email"
+                placeholder="Email Address"
+                value={email}
+                onChange={setEmail}
+                disabled={loading}
+              />
+              <InputField
+                icon={<Lock size={20} />}
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={setPassword}
+                disabled={loading}
+              />
+              {/* 
+              <div className="flex items-center gap-3 py-2 px-1">
+                <input 
+                  type="checkbox" 
+                  id="terms" 
+                  required 
+                  className="w-5 h-5 rounded border-white/10 bg-white/5 checked:bg-red-600 transition-all cursor-pointer"
+                />
+                <label htmlFor="terms" className="text-xs text-neutral-400 leading-tight cursor-pointer">
+                  I agree to the <span className="text-white underline">Terms</span> and <span className="text-white underline">Privacy Policy</span>.
+                </label>
+              </div> */}
+
+              <motion.button
+                whileTap={{ scale: 0.98 }}
+                disabled={loading}
+                className="w-full bg-red-600 hover:bg-red-500 disabled:bg-neutral-800 text-white py-4 rounded-2xl font-bold transition-all shadow-xl shadow-red-600/10 flex items-center justify-center gap-2 group mt-4"
+              >
+                {loading ? (
+                  <Loader2 className="animate-spin w-5 h-5" />
+                ) : (
+                  <>
+                    Sign Up Now
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
+              </motion.button>
+            </form>
+
+            {message && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`flex items-center gap-3 p-4 rounded-2xl border ${isSuccess ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border-red-500/20 text-red-400'
+                  }`}
+              >
+                {isSuccess ? <CheckCircle2 size={18} /> : <AlertCircle size={18} />}
+                <p className="text-sm font-medium">{message}</p>
+              </motion.div>
+            )}
+
+            <footer className="text-center pt-8 border-t border-white/5">
+              <p className="text-sm text-neutral-500">
+                Already have an account?{" "}
+                <button
+                  onClick={() => window.location.href = '/login'}
+                  className="text-white font-bold hover:text-red-500 transition-colors"
+                >
+                  Sign In
+                </button>
+              </p>
+            </footer>
+          </div>
+        </section>
       </div>
-    </section>
+    </main>
   );
 }
 
-function OptionCard({ title, description, icon, isActive, onClick }: any) {
+function InputField({ icon, type = "text", placeholder, value, onChange, disabled }: any) {
   return (
-    <motion.button
-      whileHover={{ y: -3 }}
-      onClick={onClick}
-      className={`relative w-full text-left p-6 sm:p-8 rounded-2xl transition-all duration-300 border ${
-        isActive
-          ? "bg-white/5 border-red-600 shadow-[0_0_25px_rgba(220,38,38,0.15)]"
-          : "bg-transparent border-white/10 hover:border-white/20"
-      }`}
-    >
-      <div
-        className={`mb-4 inline-flex items-center justify-center p-3 rounded-xl transition-colors ${
-          isActive
-            ? "bg-red-600 text-white"
-            : "bg-white/5 text-white/60"
-        }`}
-      >
+    <div className="relative group">
+      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-500 group-focus-within:text-red-500 transition-colors">
         {icon}
       </div>
-
-      <h4 className="text-lg sm:text-xl font-bold mb-2">{title}</h4>
-      <p className="text-white/40 text-sm leading-relaxed">{description}</p>
-
-      {isActive && (
-        <motion.div
-          layoutId="active-check"
-          className="absolute top-4 right-4 text-red-500"
-        >
-          <CheckCircle2 className="w-5 h-5 sm:w-6 sm:h-6" />
-        </motion.div>
-      )}
-    </motion.button>
+      <input
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        disabled={disabled}
+        className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 outline-none focus:border-red-500/50 focus:ring-4 focus:ring-red-500/10 transition-all text-sm lg:text-base disabled:opacity-50"
+      />
+    </div>
   );
 }
