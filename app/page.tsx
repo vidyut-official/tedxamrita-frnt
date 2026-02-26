@@ -122,8 +122,8 @@ export default function Home() {
             </div>
 
             {/* Mobile: Prashant First Stack */}
-            <div className="md:hidden flex flex-col items-center gap-12 mb-12">
-              {/* Prashant - Mobile Hero */}
+            {/* <div className="md:hidden flex flex-col items-center gap-12 mb-12">
+             
               <motion.div
                 initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -152,7 +152,7 @@ export default function Home() {
                 </div>
               </motion.div>
 
-              {/* Other speakers grid on mobile */}
+           
               <div className="grid grid-cols-2 gap-8 w-full max-w-4xl">
                 <SideSpeaker
                   image="/Layer 5.png"
@@ -192,7 +192,7 @@ export default function Home() {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Desktop: NEW LAYOUT - Prasanth BIG + 1 each side + 3 below */}
             <div className="hidden md:block">
@@ -272,7 +272,54 @@ export default function Home() {
             </div>
           </div>
         </section>
+        <section id="speakers" className="">
 
+          {[
+            {
+              name: "Prasanth Balakrishnan Nair",
+              role: "Astronaut",
+              image: "/Layer 2.png",
+              bio: "Indian Air Force pilot and astronaut with distinguished service and leadership in aerospace missions."
+            },
+            {
+              name: "Lenaa",
+              role: "Actress",
+              image: "/Layer 3.png",
+              bio: "Renowned actress known for powerful performances across Indian cinema and television."
+            },
+            {
+              name: "Sreejith Panickar",
+              role: "Advocate",
+              image: "/Layer 4.png",
+              bio: "Legal expert and public intellectual known for insightful discussions and analysis."
+            },
+            {
+              name: "Vishnuraj P",
+              role: "IAS",
+              image: "/Layer 5.png",
+              bio: "Indian Administrative Service officer dedicated to governance and public service."
+            },
+                        {
+              name: "Hariraj Madhav Rajendran",
+              role: "Advocate",
+              image: "/Layer 6.png",
+              bio: "Legal expert and public intellectual known for insightful discussions and analysis."
+            },
+            {
+              name: "Dr. Balakrishnan Shankar",
+              role: "Dean, Amrita School of Engineering",
+              image: "/Layer 7.png",
+              bio: "Esteemed academic leader and Dean at Amrita School of Engineering with a focus on innovation and research."
+            }
+          ].map((speaker, index) => (
+            <SpeakerRow
+              key={speaker.name}
+              speaker={speaker}
+              reverse={index % 2 !== 0}
+            />
+          ))}
+
+        </section>
         {/* ================= CTA ================= */}
         <section
           id="register"
@@ -394,7 +441,70 @@ export default function Home() {
     </main>
   );
 }
+function SpeakerRow({
+  speaker,
+  reverse,
+}: {
+  speaker: any;
+  reverse?: boolean;
+}) {
+  return (
+    <section className="min-h-screen flex items-center relative overflow-hidden">
 
+      {/* Background subtle gradient */}
+      <div className="absolute inset-0" />
+
+      <div
+        className={`relative max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center ${reverse ? "md:[&>*:first-child]:order-2 md:[&>*:last-child]:order-1" : ""
+          }`}
+      >
+
+        {/* IMAGE */}
+        <motion.div
+          initial={{ opacity: 0, x: reverse ? 100 : -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="flex justify-center"
+        >
+          <img
+            src={speaker.image}
+            alt={speaker.name}
+            className="max-h-[500px] md:max-h-[650px] object-contain 
+                       drop-shadow-[0_0_60px_rgba(255,0,0,0.4)]"
+          />
+        </motion.div>
+
+        {/* CONTENT */}
+        <motion.div
+          initial={{ opacity: 0, x: reverse ? -100 : 100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight">
+            {speaker.name}
+          </h2>
+
+          <p className="text-red-600 uppercase tracking-[0.4em] mt-6">
+            {speaker.role}
+          </p>
+
+          <p className="text-white/60 mt-8 text-lg leading-relaxed max-w-lg">
+            {speaker.bio}
+          </p>
+
+          {/* <div className="mt-10">
+            <button className="px-8 py-3 border border-red-600 text-red-600 uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all duration-300">
+              Learn More
+            </button>
+          </div> */}
+        </motion.div>
+
+      </div>
+    </section>
+  );
+}
 function SideSpeaker({
   image,
   name,
