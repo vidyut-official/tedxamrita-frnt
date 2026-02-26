@@ -11,6 +11,7 @@ const navLinks = [
   { name: "Speakers", href: "#speakers" },
   { name: "Schedule", href: "#schedule" },
   { name: "Team", href: "#team" },
+  // { name: "Register", href: "#register" },
 ];
 
 export default function Navbar({ scrolled }: { scrolled: boolean }) {
@@ -31,11 +32,10 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
-          scrolled || isOpen
-            ? "bg-black/90 backdrop-blur-xl py-4"
-            : "bg-transparent py-4"
-        }`}
+        className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${scrolled || isOpen
+          ? "bg-black/90 backdrop-blur-xl py-4"
+          : "bg-transparent py-4"
+          }`}
       >
         <div
           className={`max-w-7xl mx-auto px-6 flex items-center justify-between`}
@@ -73,7 +73,7 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
                 </div>
 
                 <Link
-                  href="/register"
+                  href={pathname === "/" ? "#register" : "/#register"}
                   className="bg-red-600 hover:bg-white hover:text-black text-white px-7 py-3 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 active:scale-95"
                 >
                   Register Now
@@ -137,7 +137,7 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
                 ))}
 
                 <Link
-                  href="/register"
+                  href={pathname === "/" ? "#register" : "/#register"}
                   className="bg-red-600 text-white px-8 py-5 text-sm font-bold uppercase tracking-widest inline-block w-full text-center mt-10"
                 >
                   Register Now
