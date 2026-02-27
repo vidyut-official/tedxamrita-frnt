@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { apiRequest } from "@/lib/api";
 
@@ -8,27 +12,43 @@ type Event = {
   ticket_rate: number;
 };
 
-export default async function EventsPage({
-  searchParams,
-}: {
-  searchParams: { user_id?: string };
-}) {
-  const userId = searchParams.user_id;
+export default function EventsPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const userId = searchParams.get("user_id");
 
-  let events: Event[] = [];
+  const [events, setEvents] = useState<Event[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  try {
-    events = await apiRequest<Event[]>("/api/v1/events/all");
-  } catch (err) {
-    console.error("Failed to fetch events");
-  }
+  useEffect(() => {
+    fetchEvents();
+  }, []);
+
+  const fetchEvents = async () => {
+    try {
+      const data = await apiRequest<Event[]>("/api/v1/events/all");
+      setEvents(data);
+    } catch (err) {
+      console.error("Failed to fetch events");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleBookTicket = (eventId: number) => {
+    router.push(`events/${eventId}`);
+  };
 
   return (
     <main className="min-h-screen bg-black text-white p-8">
       <div className="max-w-6xl mx-auto space-y-8">
         <h1 className="text-3xl font-bold">Events</h1>
 
-        {events.length === 0 ? (
+        {loading ? (
+          <div className="flex justify-center py-20">
+            <Loader2 className="animate-spin" size={40} />
+          </div>
+        ) : events.length === 0 ? (
           <div className="text-center text-gray-400 py-20">
             No events available.
           </div>
@@ -73,16 +93,17 @@ export default async function EventsPage({
                     </td>
 
                     <td className="px-6 py-4 text-right">
-                      <a
-                        href={`events/${event.id}`}
+                      <button
+                        onClick={() => handleBookTicket(event.id)}
+                        disabled={event.quantity === 0}
                         className={`px-4 py-2 rounded-lg font-semibold transition ${
                           event.quantity === 0
-                            ? "bg-gray-700 pointer-events-none text-gray-400"
+                            ? "bg-gray-700 cursor-not-allowed text-gray-400"
                             : "bg-red-600 hover:bg-red-700"
                         }`}
                       >
                         Book Ticket
-                      </a>
+                      </button>
                     </td>
                   </tr>
                 ))}

@@ -280,37 +280,37 @@ export default function Home() {
               name: "Prasanth Balakrishnan Nair",
               role: "Astronaut",
               image: "/Layer 2.png",
-              bio: "Indian Air Force pilot and astronaut with distinguished service and leadership in aerospace missions."
+              bio: "Distinguished Indian Air Force officer and ISRO Gaganyaan astronaut-designate, decorated with the Kirti Chakra — sharing powerful insights on leadership, resilience, and the discipline behind space exploration."
             },
             {
               name: "Lenaa",
               role: "Actress",
               image: "/Layer 3.png",
-              bio: "Renowned actress known for powerful performances across Indian cinema and television."
+              bio: "Acclaimed actress, author, and screenwriter known for powerful roles in Malayalam and Tamil cinema, celebrated for her versatility, depth, and storytelling in contemporary Indian arts."
             },
             {
               name: "Sreejith Panickar",
               role: "Advocate",
               image: "/Layer 4.png",
-              bio: "Legal expert and public intellectual known for insightful discussions and analysis."
+              bio: "Indian political analyst, researcher, and social commentator from Kerala, founding member of Mission Netaji, known for advocating the declassification of files on Subhas Chandra Bose."
             },
+{
+  name: "Vishnuraj P",
+  role: "IAS",
+  image: "/Layer 5.png",
+  bio: "Vishnuraj P is an IAS officer serving the Government of Kerala, currently leading the Department of Industries & Commerce and Sports & Youth Affairs, with prior roles in Tourism and KSIDC."
+},
             {
-              name: "Vishnuraj P",
-              role: "IAS",
-              image: "/Layer 5.png",
-              bio: "Indian Administrative Service officer dedicated to governance and public service."
-            },
-                        {
               name: "Hariraj Madhav Rajendran",
               role: "Advocate",
               image: "/Layer 6.png",
-              bio: "Legal expert and public intellectual known for insightful discussions and analysis."
+              bio: "Senior Advocate at the High Court of Kerala with 20+ years of expertise in Service, Administrative, Constitutional, and Intellectual Property Law, respected for integrity, clarity, and academic mentorship."
             },
             {
               name: "Dr. Balakrishnan Shankar",
               role: "Dean, Amrita School of Engineering",
               image: "/Layer 7.png",
-              bio: "Esteemed academic leader and Dean at Amrita School of Engineering with a focus on innovation and research."
+              bio: "Dean School of Engineering, Amrita Vishwa Vidyapeetham, and Director, Center for Flexible Electronics and Advanced Materials, global researcher, UT Austin PhD, innovator in advanced materials and technology."
             }
           ].map((speaker, index) => (
             <SpeakerRow
@@ -439,7 +439,7 @@ export default function Home() {
           </motion.div>
         </section>
       </div>
-       <Footer />
+      <Footer />
     </main>
   );
 }
