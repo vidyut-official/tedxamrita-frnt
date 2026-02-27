@@ -1,7 +1,8 @@
 "use client";
 export const dynamic = "force-dynamic";
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+//import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import { apiRequest } from "@/lib/api";
 
@@ -14,8 +15,8 @@ type Event = {
 
 export default function EventsPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const userId = searchParams.get("user_id");
+  // const searchParams = useSearchParams();
+  // const userId = searchParams.get("user_id");
 
   const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
