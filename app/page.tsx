@@ -379,13 +379,13 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <Link href="#register">
+                  <Link href="/">
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.97 }}
                       className="mt-12 px-10 py-4 bg-red-600 hover:bg-red-700 text-white font-bold uppercase tracking-widest transition-all duration-300 rounded-md"
                     >
-                      Grab your ticket
+                      Coming Soon
                     </motion.button>
                   </Link>
                 </div>
