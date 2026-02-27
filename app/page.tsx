@@ -8,6 +8,7 @@ import ParticlesBackground from "@/components/ParticlesBackground";
 import Link from "next/link";
 import Image from "next/image";
 import SpeakerCard from "@/components/SpeakerCard";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -323,11 +324,11 @@ export default function Home() {
         {/* ================= CTA ================= */}
         <section
           id="register"
-          className="relative py-24 md:py-40 px-4 md:px-6 bg-black overflow-hidden"
+          className="relative py-24 md:py-40 px-4 md:px-6 overflow-hidden"
         >
           {/* Background subtle texture glow */}
-          <div className="absolute inset-0 bg-gradient-to-br from-black via-neutral-950 to-black" />
-          <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-red-600/10 blur-[150px] rounded-full" />
+          {/* <div className="absolute inset-0 bg-gradient-to-br from-black via-neutral-950 to-black" />
+          <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-red-600/10 blur-[150px] rounded-full" /> */}
 
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -438,6 +439,7 @@ export default function Home() {
           </motion.div>
         </section>
       </div>
+       <Footer />
     </main>
   );
 }
