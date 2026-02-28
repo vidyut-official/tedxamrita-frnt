@@ -82,7 +82,7 @@ export default function Home() {
         <section id="about" className="py-12 md:py-32 scroll-mt-24 px-6">
           <div className="max-w-5xl mx-auto text-center">
             <h2 className="text-red-600 font-bold uppercase tracking-[0.4em] text-xs mb-6">
-              About TEDxAmritapuri
+              About TEDx Amrita University Amritapuri
             </h2>
 
             <h3 className="text-3xl md:text-6xl font-black uppercase leading-tight tracking-tighter mb-10">
@@ -93,7 +93,7 @@ export default function Home() {
             </h3>
 
             <p className="text-white/60 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
-              TEDxAmritapuri is an independently organized TED event hosted at
+              TEDx Amrita University Amritapuri is an independently organized TED event hosted at
               <span className="text-white font-medium"> Amrita Vishwa Vidyapeetham</span>.
               Bringing together visionaries, innovators, and changemakers, we aim to spark
               powerful conversations that challenge perspectives and inspire meaningful action.
@@ -203,7 +203,7 @@ export default function Home() {
                 <div className="flex justify-center">
                   <SideSpeaker
                     image="/Layer 5.png"
-                    name="Vishnuraj P"
+                    name="P Vishnuraj "
                     role="IAS"
                     delay={0.4}
                   />
@@ -253,14 +253,14 @@ export default function Home() {
               <div className="grid grid-cols-3 gap-12 items-center">
                 <SideSpeaker
                   image="/Layer 6.png"
-                  name="Hariraj Madhav Rajendran"
+                  name="Adv Hariraj Madhav Rajendran"
                   role="Advocate"
                   delay={1.2}
                 />
                 <SideSpeaker
                   image="/Layer 4.png"
                   name="Sreejith Panickar"
-                  role="Advocate"
+                  role="Content Strategist"
                   delay={1.6}
                 />
                 <SideSpeaker
@@ -280,7 +280,7 @@ export default function Home() {
               name: "Prasanth Balakrishnan Nair",
               role: "Astronaut",
               image: "/Layer 2.png",
-              bio: "Distinguished Indian Air Force officer and ISRO Gaganyaan astronaut-designate, decorated with the Kirti Chakra — sharing powerful insights on leadership, resilience, and the discipline behind space exploration."
+              bio: "Group Captain in the Indian Air Force. In 2019, he was one of four selected for India's human spaceflight programme, Gaganyaan. In 2026, he was decorated with the Kirti Chakra."
             },
             {
               name: "Lenaa",
@@ -290,21 +290,21 @@ export default function Home() {
             },
             {
               name: "Sreejith Panickar",
-              role: "Advocate",
+              role: "Content Strategist",
               image: "/Layer 4.png",
               bio: "Indian political analyst, researcher, and social commentator from Kerala, founding member of Mission Netaji, known for advocating the declassification of files on Subhas Chandra Bose."
             },
-{
-  name: "Vishnuraj P",
-  role: "IAS",
-  image: "/Layer 5.png",
-  bio: "Vishnuraj P is an IAS officer serving the Government of Kerala, currently leading the Department of Industries & Commerce and Sports & Youth Affairs, with prior roles in Tourism and KSIDC."
-},
             {
-              name: "Hariraj Madhav Rajendran",
+              name: "P Vishnuraj",
+              role: "IAS",
+              image: "/Layer 5.png",
+              bio: "He is an IAS officer serving the Government of Kerala, currently leading the Department of Industries & Commerce and Sports & Youth Affairs, with prior roles in Tourism and KSIDC."
+            },
+            {
+              name: "Adv Hariraj Madhav Rajendran",
               role: "Advocate",
               image: "/Layer 6.png",
-              bio: "Senior Advocate at the High Court of Kerala with 20+ years of expertise in Service, Administrative, Constitutional, and Intellectual Property Law, respected for integrity, clarity, and academic mentorship."
+              bio: "Senior Advocate at the High Court of Kerala with 20+ years of expertise in service, administration, constitutional, and Intellectual Property Law, respected for integrity, clarity, and academic mentorship."
             },
             {
               name: "Dr. Balakrishnan Shankar",
