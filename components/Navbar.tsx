@@ -73,7 +73,7 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
                 </div>
 
                 <Link
-                  href={pathname === "/" ? "#register" : "/#register"}
+                  href="https://vidyut.ulsav.com/e/tedx-amritapuri?register=true"
                   className="bg-red-600 hover:bg-white hover:text-black text-white px-7 py-3 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 active:scale-95"
                 >
                   Register Now
@@ -136,13 +136,13 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
                   </motion.div>
                 ))}
 
-                <Link
+                <a
   href={pathname === "/" ? "#register" : "/#register"}
   onClick={() => setIsOpen(false)}
   className="bg-red-600 text-white px-8 py-5 text-sm font-bold uppercase tracking-widest inline-block w-full text-center mt-10"
 >
   REGISTER NOW
-</Link>
+</a>
               </div>
             </motion.div>
           )}

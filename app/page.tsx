@@ -380,13 +380,13 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <Link href="/">
+                  <Link href="https://vidyut.ulsav.com/e/tedx-amritapuri?register=true">
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.97 }}
                       className="mt-12 px-10 py-4 bg-red-600 hover:bg-red-700 text-white font-bold uppercase tracking-widest transition-all duration-300 rounded-md"
                     >
-                      Coming Soon
+                      Get tickets
                     </motion.button>
                   </Link>
                 </div>
