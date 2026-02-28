@@ -137,11 +137,12 @@ export default function Navbar({ scrolled }: { scrolled: boolean }) {
                 ))}
 
                 <Link
-                  href={pathname === "/" ? "#register" : "/#register"}
-                  className="bg-red-600 text-white px-8 py-5 text-sm font-bold uppercase tracking-widest inline-block w-full text-center mt-10"
-                >
-                  Register Now
-                </Link>
+  href={pathname === "/" ? "#register" : "/#register"}
+  onClick={() => setIsOpen(false)}
+  className="bg-red-600 text-white px-8 py-5 text-sm font-bold uppercase tracking-widest inline-block w-full text-center mt-10"
+>
+  REGISTER NOW
+</Link>
               </div>
             </motion.div>
           )}
